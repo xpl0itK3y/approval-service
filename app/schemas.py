@@ -42,7 +42,7 @@ class CancelDecision(BaseModel):
 
 
 class ApprovalRequestOut(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
+    model_config = ConfigDict(from_attributes=True, populate_by_name=True)
 
     id: str
     workspaceId: str = Field(validation_alias="workspace_id")
@@ -69,7 +69,7 @@ class ApprovalRequestListOut(BaseModel):
 
 
 class AuditLogEntryOut(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
+    model_config = ConfigDict(from_attributes=True, populate_by_name=True)
 
     id: str
     action: str
