@@ -16,7 +16,7 @@ scoped to one workspace can never be used to read or mutate another.
 
 from dataclasses import dataclass
 
-from fastapi import Header, HTTPException, Path, status
+from fastapi import Depends, Header, HTTPException, Path, status
 
 
 @dataclass(frozen=True)
@@ -51,18 +51,6 @@ def get_auth_context(
 
 
 def require_action(action: str):
-    def _checker(
-        workspace_id: str = Path(...),
-        auth: AuthContext = None,  # populated below via Depends chain
-    ) -> AuthContext:
-        raise NotImplementedError
-
-    async def dependency(
-        workspace_id: str = Path(...),
-        auth_context: AuthContext = None,
-    ):
-        raise NotImplementedError
-
     from fastapi import Depends
 
     def _dependency(
