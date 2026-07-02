@@ -67,7 +67,9 @@ class ApprovalRequest(Base):
     decision_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     audit_entries: Mapped[list["AuditLogEntry"]] = relationship(
-        back_populates="approval_request", cascade="all, delete-orphan"
+        back_populates="approval_request",
+        cascade="all, delete-orphan",
+        order_by="AuditLogEntry.created_at",
     )
 
 
